@@ -47,7 +47,7 @@ def SQLtable(TableName, JsonFile):
         queryContent += ");" if rows == len(data) else "),\n"
 
     sqlQuery += "\n)\nVALUES\n{}".format(queryContent)
-    #PrintOutput(sqlQuery, TableName)
+    PrintOutput(sqlQuery, TableName)
     print("---\nFile created in\nC:/Users/" + getpass.getuser() + "/Documents/MSSQLDatabase/FormulaOne/{}.sql\n---".format(TableName))
     # print(sqlQuery)
 
