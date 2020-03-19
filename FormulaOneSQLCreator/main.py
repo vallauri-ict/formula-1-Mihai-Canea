@@ -47,9 +47,15 @@ def SQLtable(TableName, JsonFile):
         queryContent += ");" if rows == len(data) else "),\n"
 
     sqlQuery += "\n)\nVALUES\n{}".format(queryContent)
-    PrintOutput(sqlQuery, TableName)
-    print("---\nFile generato correttamente\n---")
+    #PrintOutput(sqlQuery, TableName)
+    print("---\nFile created in\nC:/Users/" + getpass.getuser() + "/Documents/MSSQLDatabase/FormulaOne/{}.sql\n---".format(TableName))
     # print(sqlQuery)
+
+def ShowMenu():
+    print("\nUsage\n")
+    print("[-t] [<DB table name>]: insert JSON file name from scrapy output")
+    print("[-o] [Name output file]: Export data")
+    print("...")
 
 #
 # ──────────────────────────────────────────────── I ──────────
@@ -57,8 +63,18 @@ def SQLtable(TableName, JsonFile):
 # ──────────────────────────────────────────────────────────
 #
 
+def SetTitle():
+    return """
+    ███████╗ ██████╗ ██╗          ██████╗██████╗ ███████╗ █████╗ ████████╗ ██████╗ ██████╗ 
+    ██╔════╝██╔═══██╗██║         ██╔════╝██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+    ███████╗██║   ██║██║         ██║     ██████╔╝█████╗  ███████║   ██║   ██║   ██║██████╔╝
+    ╚════██║██║▄▄ ██║██║         ██║     ██╔══██╗██╔══╝  ██╔══██║   ██║   ██║   ██║██╔══██╗
+    ███████║╚██████╔╝███████╗    ╚██████╗██║  ██║███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
+    ╚══════╝ ╚══▀▀═╝ ╚══════╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+    """
 
 def main(argv):
+    print(SetTitle())
     inputfile = ''
     outputfile = ''
     try:
@@ -66,11 +82,13 @@ def main(argv):
         # print("OPTS: ", opts, "ARGS ", args)
     except getopt.GetoptError:
         # print('main.py -t <DB table name> -o <Output.txt>')
-        print('main.py -t <DB table name>')
+        #print('main.py -t <DB table name>')
+        ShowMenu()
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-help':
-            print('main.py -t <DB table name>')
+            #print('main.py -t <DB table name>')
+            ShowMenu()
             sys.exit()
         elif opt in ("-t", "--iTable"):
             # print("OPT ", opt, "ARG ", arg)
