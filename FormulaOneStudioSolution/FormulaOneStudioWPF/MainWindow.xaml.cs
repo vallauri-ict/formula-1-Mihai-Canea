@@ -38,22 +38,27 @@ namespace FormulaOneStudioWPF
             List<CardDriverDLL> driver = new List<CardDriverDLL>();
             driver = db.LoadDrivers();
 
-            //for (int i = 0; i < driver.Count; i++)
-            //{
-            //    MyUserControls.CardDriver card = new MyUserControls.CardDriver();
-            //    card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
-            //    card.DriverName = driver[i].Name;
-            //    card.DriverTeam = driver[i].Team;
-            //    cardTest.Children.Add(card);
-            //}
+            for (int i = 0; i < driver.Count; i++)
+            {
+                MyUserControls.CardDriver card = new MyUserControls.CardDriver();
+                card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
+                card.DriverName = driver[i].Name;
+                card.DriverTeam = driver[i].Team;
+                cardTest.Children.Add(card);
+            }
 
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             MyUserControls.CardTeam cardTeamMercedes = new MyUserControls.CardTeam();
             cardTeamMercedes.CardImage = new BitmapImage(
                 new Uri("https://www.formula1.com/content/dam/fom-website/teams/2020/mercedes.png.transform/4col/image.png"));
             cardTeamMercedes.TeamName = "Mercedes";
             cardTeamMercedes.Driver1 = "Lewis Hamilton";
             cardTeamMercedes.Driver2 = "Valtteri Bottas";
-            cardTest.Children.Add(cardTeamMercedes);
+            cardTeam.Children.Add(cardTeamMercedes);
 
             MyUserControls.CardTeam cardTeamFerrari = new MyUserControls.CardTeam();
             cardTeamFerrari.CardImage = new BitmapImage(
@@ -61,7 +66,7 @@ namespace FormulaOneStudioWPF
             cardTeamFerrari.TeamName = "Ferrari";
             cardTeamFerrari.Driver1 = "Sebastian Vettel";
             cardTeamFerrari.Driver2 = "Charles Leclerc";
-            cardTest.Children.Add(cardTeamFerrari);
+            cardTeam.Children.Add(cardTeamFerrari);
         }
     }
 }

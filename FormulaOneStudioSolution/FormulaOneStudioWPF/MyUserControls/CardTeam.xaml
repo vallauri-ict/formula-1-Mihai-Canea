@@ -12,13 +12,13 @@
         <materialDesign:Card Width="200">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="140" />
+                    <RowDefinition Height="120" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Image x:Name="imgCard"
                        Source="https://www.formula1.com/content/dam/fom-website/teams/2020/mercedes.png.transform/4col/image.png"
-                       Height="140"
+                       Height="120"
                        Width="180" />
                 <Button Grid.Row="0"
                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
