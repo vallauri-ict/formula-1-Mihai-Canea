@@ -35,19 +35,28 @@ namespace FormulaOneStudioWPF
         {
 
             db = new DbTools();
-            List<CardDriverDLL> driver = new List<CardDriverDLL>();
-            driver = db.LoadDrivers();
+            //List<CardDriverDLL> driver = new List<CardDriverDLL>();
+            //driver = db.LoadDrivers();
 
-            for (int i = 0; i < driver.Count; i++)
-            {
-                MyUserControls.CardDriver card = new MyUserControls.CardDriver();
-                card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
-                card.DriverName = driver[i].Name;
-                card.DriverTeam = driver[i].Team;
-                cardTest.Children.Add(card);
-            }
+            //List<testClass> driver = new List<testClass>();
+            //driver = db.LoadDrivers();
 
-            
+            dgvDriver.ItemsSource = db.LoadDrivers();
+
+            //for (int i = 0; i < driver.Count; i++)
+            //for (int i = 0; i < driver.Count; i++)
+            //{
+            //    MyUserControls.CardDriver card = new MyUserControls.CardDriver();
+            //    //if (driver[i].PathImage == "")
+            //    card.CardImage = new BitmapImage(new Uri("https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png"));
+            //    //else
+            //    //card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
+            //    card.DriverName = driver[i].PathImage;
+            //    card.DriverTeam = driver[i].Name;
+            //    cardTest.Children.Add(card);
+            //}
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

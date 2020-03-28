@@ -137,15 +137,25 @@
                             <xcad:LayoutAnchorable ContentId="document2"
                                                    Title="Teams">
                                 <DockPanel Margin="0">
-                                    <Grid Margin="0 0 0 0">
-                                        <ScrollViewer>
-                                            <WrapPanel x:Name="cardTeam">
-                                                <MyUserControls:CardTeam Driver1="SAS"
-                                                                         Driver2="ASAS">
+                                    <ScrollViewer>
+                                        <WrapPanel x:Name="cardTeam">
+                                            <MyUserControls:CardTeam Driver1="SAS"
+                                                                     Driver2="ASAS">
 
-                                                </MyUserControls:CardTeam>
-                                            </WrapPanel>
-                                        </ScrollViewer>
+                                            </MyUserControls:CardTeam>
+                                        </WrapPanel>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable ContentId="document3"
+                                                   Title="Driver table">
+                                <DockPanel Margin="0">
+                                    <Grid>
+                                        <DataGrid Margin="0 8 0 0"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  x:Name="dgvDriver"
+                                                  CanUserSortColumns="True"
+                                                  CanUserAddRows="False" />
                                     </Grid>
                                 </DockPanel>
                             </xcad:LayoutAnchorable>

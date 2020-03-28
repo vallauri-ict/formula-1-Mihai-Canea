@@ -23,7 +23,7 @@ namespace FormulaOneDLL
             fileContent = fileContent.Replace("\t", "");
             var sqlqueries = fileContent.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
-            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneDB.mdf;Integrated Security=True");
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             var cmd = new SqlCommand("query", con);
             con.Open(); int i = 0;
             foreach (var query in sqlqueries)
@@ -42,27 +42,46 @@ namespace FormulaOneDLL
             con.Close();
         }
 
-        public List<CardDriverDLL> LoadDrivers()
+        public List<testClass> LoadDrivers()
         {
             string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
-            List<CardDriverDLL> retVal = new List<CardDriverDLL>();
-            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneDB.mdf;Integrated Security=True");
+            List<testClass> retVal = new List<testClass>();
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             using (con)
             {
                 SqlCommand command = new SqlCommand(
-                  "SELECT PathImgSmall,Name,Team FROM Drivers ORDER BY Team ASC;",
+                  "SELECT DISTINCT drivers.forename, drivers.surname, drivers.number " +
+                  "FROM drivers, races, results " +
+                  "WHERE drivers.driverId = results.driverId " +
+                  "AND races.raceId = results.raceId " +
+                  "AND races.year = 2013" +
+                  "ORDER BY drivers.surname ASC",
                   con);
                 con.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    CardDriverDLL card = new CardDriverDLL(
+                    try
+                    {
+                        testClass card = new testClass(
                         reader.GetString(0),
                         reader.GetString(1),
-                        reader.GetString(2)
+                        reader.GetInt32(2).ToString()
                         );
-                    retVal.Add(card);
+                        retVal.Add(card);
+                    }
+                    catch (Exception)
+                    {
+                        testClass card = new testClass(
+                        reader.GetString(0),
+                        reader.GetString(1),
+                        "null"
+                        );
+                        retVal.Add(card);
+                    }
+                    
+                    
                 }
                 reader.Close();
             }
@@ -73,11 +92,11 @@ namespace FormulaOneDLL
         {
             string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
             DataTable dt = new DataTable();
-            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneDB.mdf;Integrated Security=True");
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             using (con)
             {
                 SqlCommand command = new SqlCommand(
-                  "SELECT * FROM Drivers ORDER BY Team ASC;",
+                  "SELECT * FROM drivers ORDER BY forename ASC;",
                   con);
                 con.Open();
 
