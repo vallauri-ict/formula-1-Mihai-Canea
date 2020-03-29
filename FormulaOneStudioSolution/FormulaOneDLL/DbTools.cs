@@ -42,7 +42,7 @@ namespace FormulaOneDLL
             con.Close();
         }
 
-        public List<testClass> LoadDrivers()
+        public List<testClass> LoadDrivers(string year)
         {
             string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
             List<testClass> retVal = new List<testClass>();
@@ -50,11 +50,11 @@ namespace FormulaOneDLL
             using (con)
             {
                 SqlCommand command = new SqlCommand(
-                  "SELECT DISTINCT drivers.forename, drivers.surname, drivers.number " +
+                  "SELECT DISTINCT drivers.PathImgSmall, drivers.forename, drivers.surname " +
                   "FROM drivers, races, results " +
                   "WHERE drivers.driverId = results.driverId " +
                   "AND races.raceId = results.raceId " +
-                  "AND races.year = 2013" +
+                  $"AND races.year = {year} " +
                   "ORDER BY drivers.surname ASC",
                   con);
                 con.Open();
@@ -67,7 +67,7 @@ namespace FormulaOneDLL
                         testClass card = new testClass(
                         reader.GetString(0),
                         reader.GetString(1),
-                        reader.GetInt32(2).ToString()
+                        reader.GetString(2)
                         );
                         retVal.Add(card);
                     }

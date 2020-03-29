@@ -10,17 +10,17 @@ namespace FormulaOneDLL
     {
         private string pathImage;
         private string name;
-        private string dob;
+        private string surname;
 
         public testClass(string pathImage, string name, string dob)
         {
             this.pathImage = pathImage;
             this.name = name;
-            this.dob = dob;
+            this.surname = dob;
         }
 
         public string PathImage { get => pathImage; set => pathImage = value; }
         public string Name { get => name; set => name = value; }
-        public string Dob { get => dob; set => dob = value; }
+        public string Surname { get => surname; set => surname = value; }
     }
 }
