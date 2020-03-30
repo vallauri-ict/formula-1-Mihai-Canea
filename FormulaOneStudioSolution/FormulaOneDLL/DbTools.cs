@@ -42,15 +42,61 @@ namespace FormulaOneDLL
             con.Close();
         }
 
-        public List<testClass> LoadDrivers(string year)
+        public List<CardDriverDLL> LoadDrivers(string year)
         {
             string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
-            List<testClass> retVal = new List<testClass>();
+            List<CardDriverDLL> retVal = new List<CardDriverDLL>();
             var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             using (con)
             {
                 SqlCommand command = new SqlCommand(
-                  "SELECT DISTINCT drivers.PathImgSmall, drivers.forename, drivers.surname " +
+                  "SELECT DISTINCT drivers.PathImgSmall, drivers.forename, drivers.surname, constructors.name " +
+                  "FROM drivers, races, results, constructors " +
+                  "WHERE drivers.driverId = results.driverId " +
+                  "AND races.raceId = results.raceId " +
+                  "AND results.constructorId = constructors.constructorId " +
+                  $"AND races.year = {year} " +
+                  "ORDER BY drivers.surname ASC",
+                  con);
+                con.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    try
+                    {
+                        CardDriverDLL card = new CardDriverDLL(
+                        reader.GetString(0),
+                        $"{reader.GetString(1)} {reader.GetString(2)}",
+                        reader.GetString(3)
+                        );
+                        retVal.Add(card);
+                    }
+                    catch (Exception)
+                    {
+                        //CardDriverDLL card = new CardDriverDLL(
+                        //reader.GetString(0),
+                        //reader.GetString(1),
+                        //"null"
+                        //);
+                        //retVal.Add(card);
+                    }
+
+
+                }
+                reader.Close();
+            }
+            return retVal;
+        }
+        public List<TableDriverDLL> LoadTableDrivers(string year)
+        {
+            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            List<TableDriverDLL> retVal = new List<TableDriverDLL>();
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
+            using (con)
+            {
+                SqlCommand command = new SqlCommand(
+                  "SELECT DISTINCT drivers.forename, drivers.surname, drivers.number, drivers.dob, drivers.nationality, drivers.url " +
                   "FROM drivers, races, results " +
                   "WHERE drivers.driverId = results.driverId " +
                   "AND races.raceId = results.raceId " +
@@ -64,29 +110,36 @@ namespace FormulaOneDLL
                 {
                     try
                     {
-                        testClass card = new testClass(
-                        reader.GetString(0),
-                        reader.GetString(1),
-                        reader.GetString(2)
+                        TableDriverDLL card = new TableDriverDLL(
+                            reader.GetString(0),
+                            reader.GetString(1),
+                            reader.GetInt32(2),
+                            reader.GetDateTime(3).Date.ToShortDateString(),
+                            reader.GetString(4),
+                            reader.GetString(5)
                         );
                         retVal.Add(card);
                     }
                     catch (Exception)
                     {
-                        testClass card = new testClass(
-                        reader.GetString(0),
-                        reader.GetString(1),
-                        "null"
+                        TableDriverDLL card = new TableDriverDLL(
+                            reader.GetString(0),
+                            reader.GetString(1),
+                            0,
+                            reader.GetDateTime(3).Date.ToShortDateString(),
+                            reader.GetString(4),
+                            reader.GetString(5)
                         );
                         retVal.Add(card);
                     }
-                    
-                    
+
+
                 }
                 reader.Close();
             }
             return retVal;
         }
+
 
         public DataTable LoadTableDrivers()
         {

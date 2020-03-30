@@ -35,25 +35,24 @@ namespace FormulaOneStudioWPF
         {
 
             db = new DbTools();
-            //List<CardDriverDLL> driver = new List<CardDriverDLL>();
-            //driver = db.LoadDrivers();
+            List<CardDriverDLL> driver = new List<CardDriverDLL>();
+            // driver = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
 
             //List<testClass> driver = new List<testClass>();
-            //driver = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
+            driver = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
+            dgvDriver.ItemsSource = db.LoadTableDrivers(cmbYear.SelectionBoxItem.ToString());
 
-            //dgvDriver.ItemsSource = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
-
-            //for (int i = 0; i < driver.Count; i++)
-            //{
-            //    MyUserControls.CardDriver card = new MyUserControls.CardDriver();
-            //    if (driver[i].PathImage == "")
-            //        card.CardImage = new BitmapImage(new Uri("https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png"));
-            //    else
-            //        card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
-            //    card.DriverName = driver[i].Surname;
-            //    card.DriverTeam = driver[i].Name;
-            //    cardTest.Children.Add(card);
-            //}
+            for (int i = 0; i < driver.Count; i++)
+            {
+                MyUserControls.CardDriver card = new MyUserControls.CardDriver();
+                if (driver[i].PathImage == "")
+                    card.CardImage = new BitmapImage(new Uri("https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png"));
+                else
+                    card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
+                card.DriverName = driver[i].Name;
+                card.DriverTeam = driver[i].Team;
+                cardTest.Children.Add(card);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -78,20 +77,20 @@ namespace FormulaOneStudioWPF
         private void cmbYear_DropDownClosed(object sender, EventArgs e)
         {
             cardTest.Children.Clear();
-            dgvDriver.ItemsSource = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
-            //List<testClass> driver = new List<testClass>();
-            //driver = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
-            //for (int i = 0; i < driver.Count; i++)
-            //{
-            //    MyUserControls.CardDriver card = new MyUserControls.CardDriver();
-            //    if (driver[i].PathImage == "")
-            //        card.CardImage = new BitmapImage(new Uri("https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png"));
-            //    else
-            //        card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
-            //    card.DriverName = driver[i].Surname;
-            //    card.DriverTeam = driver[i].Name;
-            //    cardTest.Children.Add(card);
-            //}
+            dgvDriver.ItemsSource = db.LoadTableDrivers(cmbYear.SelectionBoxItem.ToString());
+            List<CardDriverDLL> driver = new List<CardDriverDLL>();
+            driver = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
+            for (int i = 0; i < driver.Count; i++)
+            {
+                MyUserControls.CardDriver card = new MyUserControls.CardDriver();
+                if (driver[i].PathImage == "")
+                    card.CardImage = new BitmapImage(new Uri("https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png"));
+                else
+                    card.CardImage = new BitmapImage(new Uri(driver[i].PathImage));
+                card.DriverName = driver[i].Name;
+                card.DriverTeam = driver[i].Team;
+                cardTest.Children.Add(card);
+            }
         }
     }
 }
