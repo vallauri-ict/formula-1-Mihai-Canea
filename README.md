@@ -14,6 +14,11 @@ The Software is written mainly in **C# WPF Project**, with the addition of some 
   <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneASP.png" width="65%">
 </p>
 
+### FormulaOne DB diagram
+<p align="center">
+  <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/diagrams.png" width="65%">
+</p>
+
 
 ## Building FormulaOneStudio
 First, clone the repository or download the latest zip.
