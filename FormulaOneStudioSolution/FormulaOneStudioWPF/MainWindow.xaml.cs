@@ -92,5 +92,13 @@ namespace FormulaOneStudioWPF
                 cardTest.Children.Add(card);
             }
         }
+
+        private void btnCircuits_Click(object sender, RoutedEventArgs e)
+        {
+            //Xceed.Wpf.AvalonDock.Layout.LayoutAnchorable l = new Xceed.Wpf.AvalonDock.Layout.LayoutAnchorable();
+            //l.Title = "testo";
+            //leftSideBar.Children.Add(l);
+            dgvCircuits.ItemsSource = db.LoadTableCircuits(cmbYear.SelectionBoxItem.ToString());
+        }
     }
 }

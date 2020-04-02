@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardDriverDLL.cs" />
+    <Compile Include="CircuitsDLL.cs" />
     <Compile Include="DbTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableDriverDLL.cs" />

@@ -89,28 +89,13 @@
             <xcad:LayoutRoot x:Name="_layoutRoot">
                 <xcad:LayoutPanel Orientation="Horizontal">
                     <xcad:LayoutAnchorablePaneGroup DockWidth="160">
-                        <xcad:LayoutAnchorablePane>
+                        <xcad:LayoutAnchorablePane x:Name="leftSideBar">
                             <xcad:LayoutAnchorable ContentId="Menu"
                                                    Title="Menu">
                                 <WrapPanel>
-                                    <ListBox Width="160"
-                                             FontSize="24"
-                                             x:Name="lstTest"
-                                             IsEnabled="{Binding IsChecked, ElementName=EnableListBox}"
-                                             Margin="0,0,-2,0">
-                                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                                                Width="140"
-                                                ToolTip="Resource name: MaterialDesignRaisedButton"
-                                                Content="Schedule"
-                                                Click="Button_Click" />
-                                        <TextBlock x:Name="btnAnagrafica"><Run Text="Schedule" /></TextBlock>
-                                        <TextBlock x:Name="btnPagella"><Run Text="Standings" /></TextBlock>
-                                        <TextBlock x:Name="btnCompiti"><Run Text="Drivers" /></TextBlock>
-                                        <TextBlock x:Name="btnRegistro"><Run Text="Teams" /></TextBlock>
-                                    </ListBox>
                                     <StackPanel>
                                         <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
-                                                  Margin="0 8 0 8"
+                                                  Margin="20 8 0 8"
                                                   HorizontalAlignment="Left"
                                                   x:Name="cmbYear"
                                                   DropDownClosed="cmbYear_DropDownClosed">
@@ -128,11 +113,33 @@
                                             </ComboBoxItem>
                                         </ComboBox>
                                     </StackPanel>
+                                    <ListBox Width="160"
+                                             FontSize="24"
+                                             x:Name="lstTest"
+                                             IsEnabled="{Binding IsChecked, ElementName=EnableListBox}"
+                                             Margin="0,0,-2,0">
+                                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                                Width="140"
+                                                ToolTip="Resource name: MaterialDesignRaisedButton"
+                                                Content="Schedule"
+                                                Click="Button_Click" />
+                                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                                x:Name="btnRaces"
+                                                Width="140"
+                                                ToolTip="Resource name: MaterialDesignRaisedButton"
+                                                Content="Circuits"
+                                                Click="btnCircuits_Click" />
+                                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                                x:Name="btnDrivers"
+                                                Width="140"
+                                                ToolTip="Resource name: MaterialDesignRaisedButton"
+                                                Content="Drivers" />
+                                        <TextBlock><Run Text="Schedule" /></TextBlock>
+                                        <TextBlock><Run Text="Standings" /></TextBlock>
+                                        <TextBlock><Run Text="Drivers" /></TextBlock>
+                                        <TextBlock><Run Text="Teams" /></TextBlock>
+                                    </ListBox>
                                 </WrapPanel>
-                            </xcad:LayoutAnchorable>
-                            <xcad:LayoutAnchorable ContentId="journal"
-                                                   Title="Journal">
-                                <TextBlock Text="SASASAS"></TextBlock>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                     </xcad:LayoutAnchorablePaneGroup>
@@ -143,29 +150,25 @@
                                                    Title="Driver table">
                                 <DockPanel Margin="0">
                                     <Grid>
-                                        <!--<StackPanel>
-                                            <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox, Path=IsChecked}"
-                                                      Margin="0 8 0 8"
-                                                      HorizontalAlignment="Left"
-                                                      x:Name="cmbYear"
-                                                      DropDownClosed="cmbYear_DropDownClosed">
-                                                <ComboBoxItem IsSelected="True">
-                                                    2019
-                                                </ComboBoxItem>
-                                                <ComboBoxItem>
-                                                    2018
-                                                </ComboBoxItem>
-                                                <ComboBoxItem>
-                                                    2017
-                                                </ComboBoxItem>
-                                                <ComboBoxItem>
-                                                    2016
-                                                </ComboBoxItem>
-                                            </ComboBox>
-                                        </StackPanel>-->
-                                        <DataGrid Margin="0 40 0 0"
+                                        <DataGrid Margin="0 0 0 0"
                                                   VerticalScrollBarVisibility="Auto"
                                                   x:Name="dgvDriver"
+                                                  CanUserSortColumns="True"
+                                                  CanUserAddRows="False"
+                                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                                        </DataGrid>
+                                    </Grid>
+                                </DockPanel>
+                            </xcad:LayoutAnchorable>
+
+                            <xcad:LayoutAnchorable ContentId="documentCircuits"
+                                                   Title="Circuits Table">
+                                <DockPanel Margin="0">
+                                    <Grid>
+                                        <DataGrid Margin="0 0 0 0"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  x:Name="dgvCircuits"
                                                   CanUserSortColumns="True"
                                                   CanUserAddRows="False"
                                                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
@@ -202,16 +205,11 @@
                                     </ScrollViewer>
                                 </DockPanel>
                             </xcad:LayoutAnchorable>
-                            <!--<xcad:LayoutDocument ContentId="document3"
-                                                 Title="Document 2">
-                                <TextBox Text="Document 2 Content"
-                                         AcceptsReturn="True" />
-                            </xcad:LayoutDocument>-->
                         </xcad:LayoutDocumentPane>
                     </xcad:LayoutDocumentPaneGroup >
                 </xcad:LayoutPanel>
 
-                <!--<xcad:LayoutRoot.LeftSide>
+                <!--<xcad:LayoutRoot.RightSide>
                     <xcad:LayoutAnchorSide>
                         <xcad:LayoutAnchorGroup>
                             <xcad:LayoutAnchorable Title="Agenda"
@@ -228,15 +226,8 @@
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorGroup>
                     </xcad:LayoutAnchorSide>
-                </xcad:LayoutRoot.LeftSide>-->
+                </xcad:LayoutRoot.RightSide>-->
             </xcad:LayoutRoot>
         </xcad:DockingManager>
     </Grid>
 </Window>
-
-
-<!--<materialDesign:Card Padding="32"
-                     Margin="16"
-                     Height="80">
-    <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">My First Material Design App</TextBlock>
-</materialDesign:Card>-->

@@ -140,7 +140,42 @@ namespace FormulaOneDLL
             return retVal;
         }
 
+        public List<CircuitsDLL> LoadTableCircuits(string year)
+        {
+            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            List<CircuitsDLL> retVal = new List<CircuitsDLL>();
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
+            using (con)
+            {
+                SqlCommand command = new SqlCommand(
+                  "SELECT circuits.name, circuits.location , circuits.country, races.url " +
+                  "FROM circuits " +
+                  "JOIN races " +
+                  "ON circuits.circuitId = races.circuitId " +
+                  $"AND races.year = {year} ",
+                  //"ORDER BY drivers.surname ASC",
+                  con);
+                con.Open();
 
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    CircuitsDLL circuit = new CircuitsDLL(
+                        reader.GetString(0),
+                        reader.GetString(1),
+                        reader.GetString(2),
+                        reader.GetString(3)
+                    );
+                    retVal.Add(circuit);
+                }
+                reader.Close();
+            }
+            return retVal;
+        }
+
+        // ------------------------------------------------------------------
+        // ASP
+        // ------------------------------------------------------------------
         public DataTable LoadTableDrivers()
         {
             string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
