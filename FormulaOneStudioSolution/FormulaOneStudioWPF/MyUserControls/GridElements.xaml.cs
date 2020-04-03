@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FormulaOneStudioWPF.MyUserControls
 {
     /// <summary>
-    /// Logica di interazione per GridDrivers.xaml
+    /// Logica di interazione per GridElements.xaml
     /// </summary>
-    public partial class GridDrivers : UserControl
+    public partial class GridElements : UserControl
     {
-        public GridDrivers()
+        public GridElements()
         {
             InitializeComponent();
         }

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 
 // DLL
 using FormulaOneDLL;
+using FormulaOneDLL.Entities;
 
 namespace FormulaOneStudioWPF
 {
@@ -24,7 +25,7 @@ namespace FormulaOneStudioWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        DbTools db = new DbTools();
+        DriverDLL db = new DriverDLL();
 
         public MainWindow()
         {
@@ -34,7 +35,7 @@ namespace FormulaOneStudioWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            db = new DbTools();
+            db = new DriverDLL();
             List<CardDriverDLL> driver = new List<CardDriverDLL>();
             // driver = db.LoadDrivers(cmbYear.SelectionBoxItem.ToString());
 
@@ -53,25 +54,6 @@ namespace FormulaOneStudioWPF
                 card.DriverTeam = driver[i].Team;
                 cardTest.Children.Add(card);
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MyUserControls.CardTeam cardTeamMercedes = new MyUserControls.CardTeam();
-            cardTeamMercedes.CardImage = new BitmapImage(
-                new Uri("https://www.formula1.com/content/dam/fom-website/teams/2020/mercedes.png.transform/4col/image.png"));
-            cardTeamMercedes.TeamName = "Mercedes";
-            cardTeamMercedes.Driver1 = "Lewis Hamilton";
-            cardTeamMercedes.Driver2 = "Valtteri Bottas";
-            cardTeam.Children.Add(cardTeamMercedes);
-
-            MyUserControls.CardTeam cardTeamFerrari = new MyUserControls.CardTeam();
-            cardTeamFerrari.CardImage = new BitmapImage(
-                new Uri("https://www.formula1.com/content/dam/fom-website/teams/2020/ferrari.png.transform/4col/image.png"));
-            cardTeamFerrari.TeamName = "Ferrari";
-            cardTeamFerrari.Driver1 = "Sebastian Vettel";
-            cardTeamFerrari.Driver2 = "Charles Leclerc";
-            cardTeam.Children.Add(cardTeamFerrari);
         }
 
         private void cmbYear_DropDownClosed(object sender, EventArgs e)
@@ -95,10 +77,9 @@ namespace FormulaOneStudioWPF
 
         private void btnCircuits_Click(object sender, RoutedEventArgs e)
         {
-            //Xceed.Wpf.AvalonDock.Layout.LayoutAnchorable l = new Xceed.Wpf.AvalonDock.Layout.LayoutAnchorable();
-            //l.Title = "testo";
-            //leftSideBar.Children.Add(l);
-            dgvCircuits.ItemsSource = db.LoadTableCircuits(cmbYear.SelectionBoxItem.ToString());
+            CircuitsDLL cir = new CircuitsDLL();
+            dgvCircuits.ItemsSource = cir.LoadTableCircuits(cmbYear.SelectionBoxItem.ToString());
+            circuitsDoc.IsActive = true;
         }
     }
 }

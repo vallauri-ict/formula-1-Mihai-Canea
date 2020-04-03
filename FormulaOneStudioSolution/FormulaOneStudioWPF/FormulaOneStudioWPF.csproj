@@ -117,7 +117,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyUserControls\GridDrivers.xaml">
+    <Page Include="MyUserControls\GridElements.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,8 +129,8 @@
     <Compile Include="MyUserControls\CardTeam.xaml.cs">
       <DependentUpon>CardTeam.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyUserControls\GridDrivers.xaml.cs">
-      <DependentUpon>GridDrivers.xaml</DependentUpon>
+    <Compile Include="MyUserControls\GridElements.xaml.cs">
+      <DependentUpon>GridElements.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
