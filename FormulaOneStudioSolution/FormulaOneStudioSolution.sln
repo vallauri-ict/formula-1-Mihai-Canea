@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaOneStudio", "FormulaOneStudio\FormulaOneStudio.csproj", "{12C36793-AD3B-4A19-BAFF-C88A079C9DC5}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaOneDLL", "FormulaOneDLL\FormulaOneDLL.csproj", "{AB94D7E7-35D1-42FB-987A-10459032CCB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaOneASP_NetFW", "FormulaOneASP_NetFW\FormulaOneASP_NetFW.csproj", "{FD6A0784-5B26-4B6A-8DB5-96A8A926951B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{66D8738D-80BD-47D0-AD72-55FAAC2B8DEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FD6A0784-5B26-4B6A-8DB5-96A8A926951B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD6A0784-5B26-4B6A-8DB5-96A8A926951B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD6A0784-5B26-4B6A-8DB5-96A8A926951B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D8738D-80BD-47D0-AD72-55FAAC2B8DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D8738D-80BD-47D0-AD72-55FAAC2B8DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D8738D-80BD-47D0-AD72-55FAAC2B8DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D8738D-80BD-47D0-AD72-55FAAC2B8DEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
