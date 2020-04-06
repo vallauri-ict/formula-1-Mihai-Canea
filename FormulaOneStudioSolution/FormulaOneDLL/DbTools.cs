@@ -11,7 +11,9 @@ namespace FormulaOneDLL
 {
     public class DbTools
     {
-
+        // ------------------------------------------------------------------
+        // EXECUTE SCRIPT
+        // ------------------------------------------------------------------
         public void ExecuteSqlScript(string sqlScriptName)
         {
             string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
@@ -40,6 +42,64 @@ namespace FormulaOneDLL
                 }
             }
             con.Close();
+        }
+
+        // ------------------------------------------------------------------
+        // DLL
+        // ------------------------------------------------------------------
+        public List<Driver> loadDrivers()
+        {
+            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            List<Driver> retVal = new List<Driver>();
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
+            using (con)
+            {
+                SqlCommand command = new SqlCommand(
+                  "SELECT drivers.PathImgSmall, drivers.forename, drivers.surname FROM drivers ORDER BY forename ASC;",
+                  con);
+                con.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                        Driver driver = new Driver(
+                            reader.GetString(0),
+                            reader.GetString(1),
+                            reader.GetString(2)
+                        );
+                        retVal.Add(driver);
+                }
+                reader.Close();
+            }
+            return retVal;
+        }
+
+        public SqlDataReader loadDriversData()
+        {
+            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            List<Driver> retVal = new List<Driver>();
+            var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
+            using (con)
+            {
+                SqlCommand command = new SqlCommand(
+                  "SELECT drivers.PathImgSmall, drivers.forename, drivers.surname FROM drivers ORDER BY forename ASC;",
+                  con);
+                con.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                return reader;
+                //while (reader.Read())
+                //{
+                //    Driver driver = new Driver(
+                //        reader.GetString(0),
+                //        reader.GetString(1),
+                //        reader.GetString(2)
+                //    );
+                //    retVal.Add(driver);
+                //}
+                //reader.Close();
+            }
+            //return retVal;
         }
 
         // ------------------------------------------------------------------
