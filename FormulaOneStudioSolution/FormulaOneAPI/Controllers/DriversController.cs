@@ -71,22 +71,68 @@ namespace FormulaOneAPI.Controllers
             return Ok(driver);
         }
 
+
+        // TODO
+        [Route("{year:int}/drivers")]
+        public IQueryable<DriverDto> GetDriversYear()
+        {
+            return (from d in db.Drivers
+                   from race in db.Races
+                   from res in db.Results
+                   where d.driverId == res.driverId
+                   where race.raceId == res.raceId
+                   where race.year == 2019
+                   select new DriverDto
+                   {
+                       forename = d.forename,
+                       surname = d.surname,
+                       number = d.number,
+                       PathImgSmall = d.PathImgSmall
+                   }).Distinct();
+        }
+
+        //[Route("{year:int}/drivers")]
+        //[ResponseType(typeof(DriverDto))]
+        //public async Task<IHttpActionResult> GetDriverYear(int year)
+        //{
+        //    var driver = await (from d in db.Drivers
+        //                        from race in db.Races
+        //                        from res in db.Results
+        //                        where d.driverId == res.driverId
+        //                        where race.raceId ==res.raceId
+        //                        where race.year == 2019
+        //                        select new DriverDto
+        //                        {
+        //                            forename = d.forename,
+        //                            surname = d.surname,
+        //                            number = d.number,
+        //                            PathImgSmall = d.PathImgSmall
+        //                        }).FirstOrDefaultAsync();
+        //    if (driver == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(driver);
+        //}
+
         [Route("{id:int}/details")]
         [ResponseType(typeof(DriverDetailDto))]
         public async Task<IHttpActionResult> GetDriverDetail(int id)
         {
             var driver = await (from d in db.Drivers
-                              where d.driverId == id
-                              select new DriverDetailDto
-                              {
-                                  forename = d.forename,
-                                  surname = d.surname,
-                                  number = d.number,
-                                  dob = d.dob,
-                                  nationality = d.nationality,
-                                  url = d.url,
-                                  PathImgSmall = d.PathImgSmall
-                              }).FirstOrDefaultAsync();
+                                where d.driverId == id
+                                where d.nationality == "Italy"
+                                select new DriverDetailDto
+                                {
+                                    forename = d.forename,
+                                    surname = d.surname,
+                                    number = d.number,
+                                    dob = d.dob,
+                                    nationality = d.nationality,
+                                    url = d.url,
+                                    PathImgSmall = d.PathImgSmall
+                                }).FirstOrDefaultAsync();
 
             if (driver == null)
             {

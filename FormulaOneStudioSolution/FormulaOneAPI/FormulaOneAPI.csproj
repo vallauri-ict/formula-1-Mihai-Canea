@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DriversController.cs" />
+    <Compile Include="Controllers\RacesController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Data\FormulaOneAPIContext.cs" />
     <Compile Include="DTOs\DriverDetailDto.cs" />

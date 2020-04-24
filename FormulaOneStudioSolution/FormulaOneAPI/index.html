@@ -66,7 +66,7 @@
                         <tr>
                             <th>Forename</th>
                             <th>Surname</th>
-                            <th>Path image small</th>
+                            <th>number</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -81,7 +81,7 @@
     </div>
 
     <script>
-        var uri = 'api/drivers/';
+        var uri = 'api/2019/drivers/';
 
         $(document).ready(function () {
             let table = $("#tableData");
@@ -89,21 +89,21 @@
             // Send an AJAX request
             $.getJSON(uri)
                 .done(function (data) {
-                    // On success, 'data' contains a list of products.
-                    //var dataJson = data
-                    //for (let i = 0; i < dataJson.length; i++) {
-                    //    var _tr = $("<tr>").appendTo(tableBody);
-                    //    $("<td>", {
-                    //        "text": dataJson[i]["forename"]
-                    //    }).appendTo(_tr);
-                    //    $("<td>", {
-                    //        "text": dataJson[i]["surname"]
-                    //    }).appendTo(_tr);
-                    //    $("<td>", {
-                    //        "text": dataJson[i]["PathImgSmall"]
-                    //    }).appendTo(_tr);
-                    //}
-                    //table.DataTable();
+                    //On success, 'data' contains a list of products.
+                    var dataJson = data
+                    for (let i = 0; i < dataJson.length; i++) {
+                        var _tr = $("<tr>").appendTo(tableBody);
+                        $("<td>", {
+                            "text": dataJson[i]["forename"]
+                        }).appendTo(_tr);
+                        $("<td>", {
+                            "text": dataJson[i]["surname"]
+                        }).appendTo(_tr);
+                        $("<td>", {
+                            "text": dataJson[i]["number"]
+                        }).appendTo(_tr);
+                    }
+                    table.DataTable();
                     console.log(data);
                 });
         });
