@@ -87,11 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DriversController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Data\FormulaOneAPIContext.cs" />
     <Compile Include="DTOs\DriverDetailDto.cs" />
     <Compile Include="DTOs\DriverDto.cs" />
@@ -104,6 +106,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

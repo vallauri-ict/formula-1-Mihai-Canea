@@ -16,6 +16,7 @@ using FormulaOneAPI.Models;
 
 namespace FormulaOneAPI.Controllers
 {
+    [RoutePrefix("api")]
     public class DriversController : ApiController
     {
         private FormulaOneAPIContext db = new FormulaOneAPIContext();
@@ -25,6 +26,7 @@ namespace FormulaOneAPI.Controllers
             {
                 forename = x.forename,
                 surname = x.surname,
+                number = x.number,
                 PathImgSmall = x.PathImgSmall
             };
 
@@ -34,14 +36,13 @@ namespace FormulaOneAPI.Controllers
         //{
         //    return db.Drivers;
         //}
-        [Route("")]
-        public IQueryable<DriverDto> GetBooks()
+        [Route("drivers")]
+        public IQueryable<DriverDto> GetDrivers()
         {
             return db.Drivers.Select(AsDriverDto);
         }
 
 
-        // GET: api/Drivers/5
         //[ResponseType(typeof(Driver))]
         //public async Task<IHttpActionResult> GetDriver(int id)
         //{
@@ -53,44 +54,45 @@ namespace FormulaOneAPI.Controllers
 
         //    return Ok(driver);
         //}
-        // GET api/Books/5
-        [Route("{id:int}")]
+        // GET: api/Drivers/5
+        [Route("drivers/{id:int}")]
         [ResponseType(typeof(DriverDto))]
-        public async Task<IHttpActionResult> GetBook(int id)
+        public async Task<IHttpActionResult> GetDriver(int id)
         {
-            DriverDto book = await db.Drivers
+            DriverDto driver = await db.Drivers
                 .Where(b => b.driverId == id)
                 .Select(AsDriverDto)
                 .FirstOrDefaultAsync();
-            if (book == null)
+            if (driver == null)
             {
                 return NotFound();
             }
 
-            return Ok(book);
+            return Ok(driver);
         }
 
         [Route("{id:int}/details")]
         [ResponseType(typeof(DriverDetailDto))]
         public async Task<IHttpActionResult> GetDriverDetail(int id)
         {
-            var book = await (from b in db.Drivers
-                              where b.driverId == id
+            var driver = await (from d in db.Drivers
+                              where d.driverId == id
                               select new DriverDetailDto
                               {
-                                  forename = b.forename,
-                                  surname = b.surname,
-                                  dob = b.dob,
-                                  nationality = b.nationality,
-                                  url = b.url,
-                                  PathImgSmall = b.PathImgSmall
+                                  forename = d.forename,
+                                  surname = d.surname,
+                                  number = d.number,
+                                  dob = d.dob,
+                                  nationality = d.nationality,
+                                  url = d.url,
+                                  PathImgSmall = d.PathImgSmall
                               }).FirstOrDefaultAsync();
 
-            if (book == null)
+            if (driver == null)
             {
                 return NotFound();
             }
-            return Ok(book);
+            return Ok(driver);
         }
 
         // PUT: api/Drivers/5
