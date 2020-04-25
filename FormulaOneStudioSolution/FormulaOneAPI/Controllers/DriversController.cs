@@ -71,17 +71,15 @@ namespace FormulaOneAPI.Controllers
             return Ok(driver);
         }
 
-
-        // TODO
         [Route("{year:int}/drivers")]
-        public IQueryable<DriverDto> GetDriversYear()
+        public IQueryable<DriverDto> GetDriversYear(int year)
         {
             return (from d in db.Drivers
                    from race in db.Races
                    from res in db.Results
                    where d.driverId == res.driverId
                    where race.raceId == res.raceId
-                   where race.year == 2019
+                   where race.year == year
                    select new DriverDto
                    {
                        forename = d.forename,
@@ -90,31 +88,6 @@ namespace FormulaOneAPI.Controllers
                        PathImgSmall = d.PathImgSmall
                    }).Distinct();
         }
-
-        //[Route("{year:int}/drivers")]
-        //[ResponseType(typeof(DriverDto))]
-        //public async Task<IHttpActionResult> GetDriverYear(int year)
-        //{
-        //    var driver = await (from d in db.Drivers
-        //                        from race in db.Races
-        //                        from res in db.Results
-        //                        where d.driverId == res.driverId
-        //                        where race.raceId ==res.raceId
-        //                        where race.year == 2019
-        //                        select new DriverDto
-        //                        {
-        //                            forename = d.forename,
-        //                            surname = d.surname,
-        //                            number = d.number,
-        //                            PathImgSmall = d.PathImgSmall
-        //                        }).FirstOrDefaultAsync();
-        //    if (driver == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(driver);
-        //}
 
         [Route("{id:int}/details")]
         [ResponseType(typeof(DriverDetailDto))]
