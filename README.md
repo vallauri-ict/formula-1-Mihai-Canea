@@ -4,14 +4,14 @@
 This is FormulaOneStudio, an Open Source Software that allows you to watch & manage a **[Formula 1](https://www.formula1.com/)** championship.
 The Software is written mainly in **C# WPF Project**, with the addition of some tools written in **Python**.
 
-### FormulaOne WPF
-<p align="center">
-  <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneWPF.png" width="65%">
-</p>
-
 ### FormulaOne WebAPI Website
 <p align="center">
   <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneASP.png" width="100%">
+</p>
+
+### FormulaOne WPF
+<p align="center">
+  <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneWPF.png" width="100%">
 </p>
 
 ### FormulaOne DB diagram
