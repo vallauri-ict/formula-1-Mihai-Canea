@@ -1,6 +1,7 @@
 "use strict"
 
 $(document).ready(function () {
+
     var app = new Vue({
         el: '#wrapper',
         data: function () {
@@ -10,7 +11,9 @@ $(document).ready(function () {
         },
         methods: {
             sas: function () {
-                var uri = 'api/2019/drivers/';
+                if ($('#selectedYear').text() == 'All')
+                    $('#selectedYear').text('');
+                var uri = 'api/' + $('#selectedYear').text()+'/drivers/';
                 var myData;
                 $.getJSON(uri)
                     .done((data) => {
@@ -20,5 +23,9 @@ $(document).ready(function () {
                     });
             }
         },
+    });
+
+    $('.dropdown-menu a').click(function () {
+        $('#selectedYear').text($(this).text());
     });
 });
