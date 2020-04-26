@@ -86,8 +86,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="F1_website\circuits.html" />
     <Content Include="F1_website\css\sb-admin-2.css" />
     <Content Include="F1_website\css\sb-admin-2.min.css" />
+    <Content Include="F1_website\drivers.html" />
     <Content Include="F1_website\img\undraw_posting_photo.svg" />
     <Content Include="F1_website\js\demo\chart-area-demo.js" />
     <Content Include="F1_website\js\demo\chart-bar-demo.js" />
@@ -1696,6 +1698,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CircuitsController.cs" />
+    <Compile Include="Controllers\ConstructorsController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\RacesController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
@@ -1710,6 +1714,8 @@
       <DependentUpon>202004231525538_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Circuit.cs" />
+    <Compile Include="Models\Constructor.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\Result.cs" />

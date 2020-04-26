@@ -24,5 +24,9 @@ namespace FormulaOneAPI.Data
         public System.Data.Entity.DbSet<FormulaOneAPI.Models.Result> Results { get; set; }
 
         public System.Data.Entity.DbSet<FormulaOneAPI.Models.Race> Races { get; set; }
+
+        public System.Data.Entity.DbSet<FormulaOneAPI.Models.Constructor> Constructors { get; set; }
+
+        public System.Data.Entity.DbSet<FormulaOneAPI.Models.Circuit> Circuits { get; set; }
     }
 }

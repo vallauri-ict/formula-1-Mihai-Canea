@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.UI.WebControls;
 using FormulaOneAPI.Data;
 using FormulaOneAPI.DTOs;
 using FormulaOneAPI.Models;
@@ -24,6 +25,7 @@ namespace FormulaOneAPI.Controllers
         private static readonly Expression<Func<Driver, DriverDto>> AsDriverDto =
             x => new DriverDto
             {
+                driverId = x.driverId,
                 forename = x.forename,
                 surname = x.surname,
                 number = x.number,
@@ -75,27 +77,30 @@ namespace FormulaOneAPI.Controllers
         public IQueryable<DriverDto> GetDriversYear(int year)
         {
             return (from d in db.Drivers
-                   from race in db.Races
-                   from res in db.Results
-                   where d.driverId == res.driverId
-                   where race.raceId == res.raceId
-                   where race.year == year
-                   select new DriverDto
-                   {
-                       forename = d.forename,
-                       surname = d.surname,
-                       number = d.number,
-                       PathImgSmall = d.PathImgSmall
-                   }).Distinct();
+                    from race in db.Races
+                    from res in db.Results
+                    from con in db.Constructors
+                    where d.driverId == res.driverId
+                    where race.raceId == res.raceId
+                    where res.constructorId == con.constructorId
+                    where race.year == year
+                    select new DriverDto
+                    {
+                        driverId = d.driverId,
+                        forename = d.forename,
+                        surname = d.surname,
+                        constructor = con.name,
+                        number = d.number,
+                        PathImgSmall = d.PathImgSmall
+                    }).Distinct().OrderBy(b => b.constructor);
         }
 
-        [Route("{id:int}/details")]
+        [Route("drivers/{id:int}/details")]
         [ResponseType(typeof(DriverDetailDto))]
         public async Task<IHttpActionResult> GetDriverDetail(int id)
         {
             var driver = await (from d in db.Drivers
                                 where d.driverId == id
-                                where d.nationality == "Italy"
                                 select new DriverDetailDto
                                 {
                                     forename = d.forename,

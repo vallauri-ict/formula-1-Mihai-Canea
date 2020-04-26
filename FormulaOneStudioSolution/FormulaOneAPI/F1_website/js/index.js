@@ -16,7 +16,7 @@ $(document).ready(function () {
             ShowDrivers: function () {
                 if ($('#selectedYear').text() == 'All')
                     $('#selectedYear').text('');
-                var uri = 'api/' + $('#selectedYear').text() + '/drivers/';
+                var uri = '../api/' + $('#selectedYear').text() + '/drivers/';
                 var myData;
                 $.getJSON(uri)
                     .done((data) => {
@@ -35,9 +35,9 @@ $(document).ready(function () {
 
     $('.dropdown-menu a').click(function () {
         $('#selectedYear').text($(this).text());
+        app.ShowDrivers();
     });
 
-    //$('#dataTable').DataTable();
 });
 
 function visualizza(n) {

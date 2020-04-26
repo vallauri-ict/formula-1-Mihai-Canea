@@ -45,7 +45,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
@@ -60,8 +60,8 @@
               Interface
             </div>
             -->
-            <li class="nav-item active">
-                <a class="nav-link" v-on:click="ShowDrivers">
+            <li class="nav-item">
+                <a class="nav-link" href="F1_website/drivers.html">
                     <!-- <i class="fas fa-fw fa-chart-area"></i> -->
                     <span>Drivers</span>
                 </a>
@@ -102,130 +102,155 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <!--<li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>-->
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>-->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="selectedYear" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    2019
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">2019</a>
-                                    <a class="dropdown-item" href="#">2018</a>
-                                    <a class="dropdown-item" href="#">2017</a>
-                                    <a class="dropdown-item" href="#">2016</a>
-                                    <a class="dropdown-item" href="#">2015</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">All</a>
-                                </div>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>-->
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <!--<a href="#" class="btn btn-danger btn-icon-split">
-                                <span class="icon" onclick="alert(1)">
-                                    <i class="fas fa-id-card"></i>
-                                </span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-table"></i>
-                                </span>
-                            </a>-->
-
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-danger active" onclick="visualizza(0)">
-                                    <input type="radio" name="options" id="option2" autocomplete="off">
-                                    <span class="icon">
-                                        <i class="fas fa-id-card"></i>
-                                    </span>
-                                </label>
-                                <label class="btn btn-danger" onclick="visualizza(1)">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                                    <span class="icon">
-                                        <i class="fas fa-table"></i>
-                                    </span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid" id="drivers">
+                <div class="container-fluid">
 
-                    <div id="tableDrivers" class="card shadow mb-4" style="display:none">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Drivers table</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Number</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(item,index) in drivers">
-                                            <td>{{ item.forename }} {{ item.surname }}</td>
-                                            <td> {{ item.number }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
-                    <!--<div class="d-flex flex-row  justify-content-between  align-items-center mb-4">
-         <h1 class="h2 mb-0 text-gray-800" id="title">FormulaOne Studio</h1>
-        <div class="dropdown mb-4">
-            <button class="btn btn-danger dropdown-toggle" type="button" id="selectedYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                2019
-            </button>
-            <div id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">2019</a>
-                <a class="dropdown-item" href="#">2018</a>
-                <a class="dropdown-item" href="#">2017</a>
-                <a class="dropdown-item" href="#">2016</a>
-                <a class="dropdown-item" href="#">2015</a>
-                <a class="dropdown-item" href="#">All</a>
-            </div>
-        </div>
-    </div>-->
+
                     <!-- Content Row -->
-                    <div class="row" id="cardDrivers">
+                    <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4" v-for="(item,index) in drivers">
-                            <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a href="F1_website/drivers.html">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Drivers table</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">848 elements</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-user-astronaut fa-2x text-gray-500"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text font-weight-bold text-primary text-uppercase mb-1">
-                                                {{ item.forename }} {{ item.surname }}
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Number: {{ item.number }}</div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Races table</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1.033 elements</div>
                                         </div>
                                         <div class="col-auto">
-                                            <img class="img-fluid rounded" style="width:150px" v-if="item.PathImgSmall!=''" v-bind:src="item.PathImgSmall">
-                                            <img class="img-fluid rounded" style="width:150px" v-else="item.PathImgSmall==''" src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">
+                                            <i class="fas fa-flag-checkered fa-2x text-gray-500"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                       
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Results table</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">24.620 elements</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-poll fa-2x text-gray-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Constructors table</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">210 elements</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Project</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">Driver controller<span class="float-right">60%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Race controller<span class="float-right">20%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Result controller<span class="float-right">10%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Contructor controller<span class="float-right">20%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- Illustrations -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Illustration</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                                    </div>
+                                    <p>This is FormulaOneStudio, an Open Source Software that allows you to watch & manage a Formula 1 championship. The Software is written mainly in C# WPF Project, with the addition of some tools written in Python.</p>
+                                    <a target="_blank" rel="nofollow" href="https://github.com/vallauri-ict/formula-1-Mihai-Canea">See in GitHub &rarr;</a>
+                                </div>
+                            </div>
+
+                            <!-- Approach -->
+                            <!--<div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
+                                    <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
+                                </div>
+                            </div>-->
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
                 <!-- Content Row -->
                 <!-- /.container-fluid -->
 
