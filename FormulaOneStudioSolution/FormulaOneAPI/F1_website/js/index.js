@@ -1,5 +1,7 @@
 "use strict"
 
+var table, card;
+
 $(document).ready(function () {
 
     var app = new Vue({
@@ -7,25 +9,44 @@ $(document).ready(function () {
         data: function () {
             return {
                 drivers: [],
+                driversTable: [],
             }
         },
         methods: {
-            sas: function () {
+            ShowDrivers: function () {
                 if ($('#selectedYear').text() == 'All')
                     $('#selectedYear').text('');
-                var uri = 'api/' + $('#selectedYear').text()+'/drivers/';
+                var uri = 'api/' + $('#selectedYear').text() + '/drivers/';
                 var myData;
                 $.getJSON(uri)
                     .done((data) => {
                         //console.log("Drivers", myData)
                         this.drivers = data;
-                        console.log(this.drivers)
+                        //console.log(this.drivers)
                     });
             }
         },
     });
 
+    app.ShowDrivers();
+
+    table = $("#tableDrivers");
+    card = $("#cardDrivers");
+
     $('.dropdown-menu a').click(function () {
         $('#selectedYear').text($(this).text());
     });
+
+    //$('#dataTable').DataTable();
 });
+
+function visualizza(n) {
+    if (n == 0) {
+        table.hide();
+        card.show();
+    }
+    else if (n == 1) {
+        table.show();
+        card.hide();
+    }
+}

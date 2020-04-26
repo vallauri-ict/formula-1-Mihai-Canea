@@ -9,6 +9,10 @@ The Software is written mainly in **C# WPF Project**, with the addition of some 
   <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneASP.png" width="100%">
 </p>
 
+<p align="center">
+  <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneASP_table.png" width="100%">
+</p>
+
 ### FormulaOne WPF
 <p align="center">
   <img src="https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/FormulaOneWPF.png" width="100%">

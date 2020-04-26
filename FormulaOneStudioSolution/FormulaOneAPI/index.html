@@ -45,7 +45,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
@@ -60,8 +60,8 @@
               Interface
             </div>
             -->
-            <li class="nav-item">
-                <a class="nav-link" v-on:click="sas">
+            <li class="nav-item active">
+                <a class="nav-link" v-on:click="ShowDrivers">
                     <!-- <i class="fas fa-fw fa-chart-area"></i> -->
                     <span>Drivers</span>
                 </a>
@@ -97,83 +97,110 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">FormulaOne Studio</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-danger" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <!--<li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>-->
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="selectedYear" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    2019
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">2019</a>
+                                    <a class="dropdown-item" href="#">2018</a>
+                                    <a class="dropdown-item" href="#">2017</a>
+                                    <a class="dropdown-item" href="#">2016</a>
+                                    <a class="dropdown-item" href="#">2015</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">All</a>
+                                </div>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>-->
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <!--<a href="#" class="btn btn-danger btn-icon-split">
+                                <span class="icon" onclick="alert(1)">
+                                    <i class="fas fa-id-card"></i>
+                                </span>
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-table"></i>
+                                </span>
+                            </a>-->
+
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-danger active" onclick="visualizza(0)">
+                                    <input type="radio" name="options" id="option2" autocomplete="off">
+                                    <span class="icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </span>
+                                </label>
+                                <label class="btn btn-danger" onclick="visualizza(1)">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    <span class="icon">
+                                        <i class="fas fa-table"></i>
+                                    </span>
+                                </label>
                             </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                               placeholder="Search for..." aria-label="Search"
-                                               aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <!-- Nav Item - Messages -->
-                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-                        <!-- Nav Item - User Information -->
-
-                    </ul>
-
+                        </form>
+                    </div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid" id="drivers">
 
-                    <div class="d-flex flex-row  justify-content-between  align-items-center mb-4">
-                         <h1 class="h2 mb-0 text-gray-800" id="title">FormulaOne Studio</h1>
-                        <div class="dropdown mb-4">
-                            <button class="btn btn-danger dropdown-toggle" type="button" id="selectedYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                2019
-                            </button>
-                            <div id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">2019</a>
-                                <a class="dropdown-item" href="#">2018</a>
-                                <a class="dropdown-item" href="#">2017</a>
-                                <a class="dropdown-item" href="#">2016</a>
-                                <a class="dropdown-item" href="#">2015</a>
-                                <a class="dropdown-item" href="#">All</a>
+                    <div id="tableDrivers" class="card shadow mb-4" style="display:none">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Drivers table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(item,index) in drivers">
+                                            <td>{{ item.forename }} {{ item.surname }}</td>
+                                            <td> {{ item.number }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                    <!--<div class="d-flex flex-row  justify-content-between  align-items-center mb-4">
+         <h1 class="h2 mb-0 text-gray-800" id="title">FormulaOne Studio</h1>
+        <div class="dropdown mb-4">
+            <button class="btn btn-danger dropdown-toggle" type="button" id="selectedYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                2019
+            </button>
+            <div id="drop" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">2019</a>
+                <a class="dropdown-item" href="#">2018</a>
+                <a class="dropdown-item" href="#">2017</a>
+                <a class="dropdown-item" href="#">2016</a>
+                <a class="dropdown-item" href="#">2015</a>
+                <a class="dropdown-item" href="#">All</a>
+            </div>
+        </div>
+    </div>-->
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row" id="cardDrivers">
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4" v-for="(item,index) in drivers">
@@ -187,8 +214,6 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">Number: {{ item.number }}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <!--<img class="img-fluid rounded" style="width:150px"
-                                            src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">-->
                                             <img class="img-fluid rounded" style="width:150px" v-if="item.PathImgSmall!=''" v-bind:src="item.PathImgSmall">
                                             <img class="img-fluid rounded" style="width:150px" v-else="item.PathImgSmall==''" src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">
                                         </div>
@@ -199,6 +224,7 @@
 
                     </div>
                 </div>
+                       
 
                 <!-- Content Row -->
                 <!-- /.container-fluid -->
@@ -256,11 +282,13 @@
     <script src="F1_website/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="F1_website/vendor/chart.js/Chart.min.js"></script>
+    <!--<script src="F1_website/vendor/chart.js/Chart.min.js"></script>-->
+    <script src="F1_website/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="F1_website/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="F1_website/js/demo/chart-area-demo.js"></script>
-    <script src="F1_website/js/demo/chart-pie-demo.js"></script>
+    <!--<script src="F1_website/js/demo/chart-area-demo.js"></script>
+    <script src="F1_website/js/demo/chart-pie-demo.js"></script>-->
 
 </body>
 
