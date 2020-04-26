@@ -17,5 +17,6 @@ namespace FormulaOneAPI.Models
 		public double? lng { get; set; }
 		public int? alt { get; set; }
 		public string url { get; set; }
+		public string PathImgSmall { get; set; }
 	}
 }
