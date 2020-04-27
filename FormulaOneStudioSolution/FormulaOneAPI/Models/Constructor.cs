@@ -13,5 +13,6 @@ namespace FormulaOneAPI.Models
 		public string name { get; set; }
 		public string nationality { get; set; }
 		public string url { get; set; }
+		public string PathImgSmall { get; set; }
 	}
 }

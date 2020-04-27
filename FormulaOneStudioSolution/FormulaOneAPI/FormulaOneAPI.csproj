@@ -87,11 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="F1_website\circuits.html" />
+    <Content Include="F1_website\constructors.html" />
     <Content Include="F1_website\css\sb-admin-2.css" />
     <Content Include="F1_website\css\sb-admin-2.min.css" />
     <Content Include="F1_website\drivers.html" />
     <Content Include="F1_website\img\undraw_posting_photo.svg" />
     <Content Include="F1_website\js\circuits.js" />
+    <Content Include="F1_website\js\constructors.js" />
     <Content Include="F1_website\js\demo\chart-area-demo.js" />
     <Content Include="F1_website\js\demo\chart-bar-demo.js" />
     <Content Include="F1_website\js\demo\chart-pie-demo.js" />

@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
             integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/constructors.js"></script>
 </head>
 
 <body id="page-top">
@@ -60,8 +60,8 @@
               Interface
             </div>
             -->
-            <li class="nav-item active">
-                <a class="nav-link">
+            <li class="nav-item">
+                <a class="nav-link" href="drivers.html">
                     <!-- <i class="fas fa-fw fa-chart-area"></i> -->
                     <span>Drivers</span>
                 </a>
@@ -71,8 +71,8 @@
                     <span>Circuits</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="constructors.html">
+            <li class="nav-item active ">
+                <a class="nav-link">
                     <span>Constructors</span>
                 </a>
             </li>
@@ -98,112 +98,28 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="">Drivers</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <!--<li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>-->
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>-->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="selectedYear" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    2019
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-height: 200px; overflow-y:auto;">
-                                    <a class="dropdown-item" href="#" v-for="n in 70">{{ 2020 - n}}</a>
-                                    <!--<a class="dropdown-item" href="#">2019</a>
-                                    <a class="dropdown-item" href="#">2018</a>
-                                    <a class="dropdown-item" href="#">2017</a>
-                                    <a class="dropdown-item" href="#">2016</a>
-                                    <a class="dropdown-item" href="#">2015</a>
-                                    <a class="dropdown-item" href="#">1984</a>-->
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">All</a>
-                                </div>
-                            </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>-->
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <!--<a href="#" class="btn btn-danger btn-icon-split">
-                                <span class="icon" onclick="alert(1)">
-                                    <i class="fas fa-id-card"></i>
-                                </span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-table"></i>
-                                </span>
-                            </a>-->
-
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-danger active" onclick="visualizza(0)">
-                                    <input type="radio" name="options" id="option2" autocomplete="off">
-                                    <span class="icon">
-                                        <i class="fas fa-id-card"></i>
-                                    </span>
-                                </label>
-                                <label class="btn btn-danger" onclick="visualizza(1)">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                                    <span class="icon">
-                                        <i class="fas fa-table"></i>
-                                    </span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
+                    <a class="navbar-brand" href="">Constructors</a>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid" id="drivers">
-
-                    <div id="tableDrivers" class="card shadow mb-4" style="display:none">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Drivers table</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table">
-                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Constructor</th>
-                                            <th>Number</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(item,index) in drivers">
-                                            <td>{{ item.forename }} {{ item.surname }}</td>
-                                            <td> {{ item.constructor }}</td>
-                                            <td> {{ item.number }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container-fluid">
                     <!-- Content Row -->
-                    <div class="row" id="cardDrivers">
-
+                    <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4" v-for="(item,index) in drivers">
+                        <div class="col-xl-3 col-md-6 mb-4" v-for="(item,index) in constructors">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text font-weight-bold text-primary text-uppercase mb-1">
-                                                {{ item.forename }} {{ item.surname }}
+                                                {{ item.name }}
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{item.constructor}} {{ item.number }}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{item.nationality}}</div>
+                                            <a :href="'https://' + item.url" target="_blank">Wikipedia</a>
                                         </div>
                                         <div class="col-auto">
                                             <img class="img-fluid rounded" style="width:100px" v-if="item.PathImgSmall!=''" v-bind:src="item.PathImgSmall">
-                                            <img class="img-fluid rounded" style="width:100px" v-else="item.PathImgSmall==''" src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">
+                                            <img class="img-fluid rounded" style="width:100px" v-else="item.PathImgSmall==''" src="https://www.glocalmedia.com/wp-content/uploads/2019/08/F1-Logo.png">
                                         </div>
                                     </div>
                                 </div>
