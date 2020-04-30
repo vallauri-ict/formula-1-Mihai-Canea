@@ -1,4 +1,4 @@
-![Presentation](https://github.com/Mihai-Canea/FormulaOneStudio/blob/master/Assets/image/Formula1.png)
+![Presentation](https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/Formula1.png)
 
 # FormulaOneStudio
 
