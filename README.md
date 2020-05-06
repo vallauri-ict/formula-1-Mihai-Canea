@@ -7,6 +7,9 @@ This is FormulaOneStudio, an Open Source Software that allows you to watch & man
 The Software is written mainly in **C# WPF Project**, with the addition of some tools written in **Python**.
 > You can find some additional photos in the [gallery folder](./Assets/doc/Gallery.md).
 
+### Documentation
+- [Web API routes](./Assets/doc/WebApi.md)
+
 ### FormulaOne DB diagram
 ![DB diagram](https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/diagrams.png)
 
