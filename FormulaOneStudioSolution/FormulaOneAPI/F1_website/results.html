@@ -27,7 +27,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/results.js"></script>
 </head>
 
 <body id="page-top">
@@ -65,8 +65,8 @@
               Interface
             </div>
             -->
-            <li class="nav-item active">
-                <a class="nav-link">
+            <li class="nav-item">
+                <a class="nav-link" href="drivers.html">
                     <!-- <i class="fas fa-fw fa-chart-area"></i> -->
                     <span>Drivers</span>
                 </a>
@@ -87,8 +87,9 @@
                     <span>Races</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="results.html">
+
+            <li class="nav-item active">
+                <a class="nav-link">
                     <span>Results</span>
                 </a>
             </li>
@@ -114,7 +115,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="">Drivers</a>
+                    <a class="navbar-brand" href="">Results</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -124,23 +125,27 @@
                             <!--<li class="nav-item active">
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li>-->
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>-->
-                            <li class="nav-item dropdown">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Year</a>
+                            </li>
+                            <li class="nav-item dropdown" id="yearnav">
                                 <a class="nav-link dropdown-toggle" href="#" id="selectedYear" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     2019
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-height: 200px; overflow-y:auto;">
                                     <a class="dropdown-item" href="#" v-for="n in 70">{{ 2020 - n}}</a>
-                                    <!--<a class="dropdown-item" href="#">2019</a>
-                                    <a class="dropdown-item" href="#">2018</a>
-                                    <a class="dropdown-item" href="#">2017</a>
-                                    <a class="dropdown-item" href="#">2016</a>
-                                    <a class="dropdown-item" href="#">2015</a>
-                                    <a class="dropdown-item" href="#">1984</a>-->
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">All</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Round</a>
+                            </li>
+                            <li class="nav-item dropdown" id="racenav">
+                                <a class="nav-link dropdown-toggle" href="#" id="selectedRace" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    1
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-height: 200px; overflow-y:auto;">
+                                    <a class="dropdown-item" href="#" v-for="n in 21">{{ 0 + n}}</a>
                                 </div>
                             </li>
                             <!--<li class="nav-item">
@@ -156,49 +161,42 @@
                                     <i class="fas fa-table"></i>
                                 </span>
                             </a>-->
-
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-danger active" onclick="visualizza(0)">
-                                    <input type="radio" name="options" id="option2" autocomplete="off">
-                                    <span class="icon">
-                                        <i class="fas fa-id-card"></i>
-                                    </span>
-                                </label>
-                                <label class="btn btn-danger" onclick="visualizza(1)">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                                    <span class="icon">
-                                        <i class="fas fa-table"></i>
-                                    </span>
-                                </label>
-                            </div>
                         </form>
                     </div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid" id="drivers">
+                <div class="container-fluid">
 
-                    <div id="tableDrivers" class="card shadow mb-4" style="display:none">
+                    <div id="tableDrivers" class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Drivers table</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Results</h6>
                         </div>
                         <div class="card-body">
                             <div class="table">
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Position</th>
                                             <th>Name</th>
-                                            <th>Constructor</th>
                                             <th>Number</th>
-                                            <th>URL</th>
+                                            <th>Laps</th>
+                                            <th>Grid</th>
+                                            <th>Fastest lap time</th>
+                                            <th>Fastest lap speed</th>
+                                            <th>Points</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(item,index) in drivers">
+                                        <tr v-for="(item,index) in results">
+                                            <td> {{ item.positionText }}</td>
                                             <td>{{ item.forename }} {{ item.surname }}</td>
-                                            <td> {{ item.constructor }}</td>
                                             <td> {{ item.number }}</td>
-                                            <td> <a class="btn btn-danger" :href="'https://' + item.url" target="_blank" role="button">Link</a></td>
+                                            <td> {{ item.laps }}</td>
+                                            <td> {{ item.grid }}</td>
+                                            <td> {{ item.fastestLapTime }}</td>
+                                            <td> {{ item.fastestLapSpeed }}</td>
+                                            <td> {{ item.points}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -206,61 +204,6 @@
                         </div>
                     </div>
                     <!-- Content Row -->
-                    <div class="row" id="cardDrivers">
-
-                        <div class="col-xl-3 col-md-6 mb-4" v-for="(item,index) in drivers">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <a class="text font-weight-bold text-primary text-uppercase mb-1" data-toggle="modal" data-target="#exampleModal" style="cursor:pointer" v-on:click="pos = index">
-                                                {{ item.forename }} {{ item.surname }}
-                                            </a>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{item.constructor}} {{ item.number }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <img class="img-fluid rounded" style="width:100px" v-if="item.PathImgSmall!=''" v-bind:src="item.PathImgSmall">
-                                            <img class="img-fluid rounded" style="width:100px" v-else="item.PathImgSmall==''" src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="drivers.length > 0">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="card-body">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <h4 class="text font-weight-bold text-primary text-uppercase mb-1" data-toggle="modal" data-target="#exampleModal"  style="cursor:pointer" v-on:click="pos = index">
-                                                    {{ drivers[pos].forename}} {{ drivers[pos].surname }}
-                                                </h4>
-                                                <div class="h4 mb-0 font-weight-bold text-gray-800">{{ drivers[pos].constructor}}</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <img class="img-fluid rounded" style="width:200px" v-if="drivers[pos].PathImgSmall!=''" v-bind:src="drivers[pos].PathImgSmall">
-                                                <img class="img-fluid rounded" style="width:200px" v-else="drivers[pos].PathImgSmall==''" src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item text-gray-800">Date of birth: {{ drivers[pos].dob.split('T')[0]}}</li>
-                                        <li class="list-group-item text-gray-800">Number: {{ drivers[pos].number}}</li>
-                                        <li class="list-group-item text-gray-800">Nationality: {{ drivers[pos].nationality}}</li>
-                                    </ul>
-                                    <div class="card-body">
-                                        <a :href="'https://' + drivers[pos].url" target="_blank" role="button" class="card-link">Wikipedia</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
 
 

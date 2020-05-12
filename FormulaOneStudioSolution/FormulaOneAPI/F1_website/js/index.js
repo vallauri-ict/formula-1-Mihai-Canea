@@ -10,6 +10,8 @@ $(document).ready(function () {
             return {
                 drivers: [],
                 driversTable: [],
+                driverDetail: [],
+                pos : 0,
             }
         },
         methods: {
@@ -24,6 +26,9 @@ $(document).ready(function () {
                         this.drivers = data;
                         //console.log(this.drivers)
                     });
+            },
+            ShowDriverDetail: function () {
+                
             }
         },
     });

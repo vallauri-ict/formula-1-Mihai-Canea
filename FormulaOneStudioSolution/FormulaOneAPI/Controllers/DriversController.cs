@@ -90,7 +90,10 @@ namespace FormulaOneAPI.Controllers
                         forename = d.forename,
                         surname = d.surname,
                         constructor = con.name,
+                        dob = d.dob,
+                        nationality = d.nationality,
                         number = d.number,
+                        url = d.url,
                         PathImgSmall = d.PathImgSmall
                     }).Distinct().OrderBy(b => b.constructor);
         }

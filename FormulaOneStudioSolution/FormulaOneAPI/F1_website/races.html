@@ -24,6 +24,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
             integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/races.js"></script>
 </head>
@@ -37,10 +39,10 @@
         <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.html">
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div> -->
+                  <i class="fas fa-laugh-wink"></i>
+                </div> -->
                 <div class="sidebar-brand-text mx-3">Formula 1</div>
             </a>
 
@@ -60,9 +62,9 @@
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
-      Interface
-    </div>
-    -->
+              Interface
+            </div>
+            -->
             <li class="nav-item">
                 <a class="nav-link" href="drivers.html">
                     <!-- <i class="fas fa-fw fa-chart-area"></i> -->
@@ -85,6 +87,12 @@
                     <span>Races</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="results.html">
+                    <span>Results</span>
+                </a>
+            </li>
             <!-- Nav Item - Pages Collapse Menu -->
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- Divider -->
@@ -94,8 +102,8 @@
             <!-- Divider -->
             <!-- Sidebar Toggler (Sidebar) -->
             <!--<div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>-->
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>-->
 
         </ul>
         <!-- End of Sidebar -->
@@ -108,6 +116,24 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="">Races</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <!--<li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>-->
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>-->
+                            <li class="nav-item dropdown" id="yearnav">
+                                <a class="nav-link dropdown-toggle" href="#" id="selectedYear" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    2019
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-height: 200px; overflow-y:auto;">
+                                    <a class="dropdown-item" href="#" v-for="n in 70">{{ 2020 - n}}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -120,17 +146,81 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text font-weight-bold text-primary text-uppercase mb-1"
+                                                 data-toggle="modal"
+                                                 data-target="#exampleModal"
+                                                 style="cursor:pointer"
+                                                 v-on:click="pos = index; ShowRacesResults(item.year,item.round)">
                                                 {{ item.name }}
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{item.year}}</div>
                                             <a :href="'https://' + item.url" target="_blank">Wikipedia</a>
                                         </div>
                                         <div class="col-auto">
-                                            <!--<img class="img-fluid rounded" style="width:100px" v-if="item.PathImgSmall!=''" v-bind:src="item.PathImgSmall">-->
-                                            <!--<img class="img-fluid rounded" style="width:100px" v-else="item.PathImgSmall==''" src="https://www.glocalmedia.com/wp-content/uploads/2019/08/F1-Logo.png">-->
-                                            <img class="img-fluid rounded" style="width:100px" src="https://www.glocalmedia.com/wp-content/uploads/2019/08/F1-Logo.png">
+                                            <img class="img-fluid rounded" style="width:100px" v-if="item.PathImgSmall!=''" v-bind:src="item.PathImgSmall">
+                                            <img class="img-fluid rounded" style="width:100px" v-else="item.PathImgSmall==''" src="https://www.glocalmedia.com/wp-content/uploads/2019/08/F1-Logo.png">
+                                            <!--<img class="img-fluid rounded" style="width:100px" src="https://www.glocalmedia.com/wp-content/uploads/2019/08/F1-Logo.png">-->
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="races.length > 0 && results.length > 0">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="card-body">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <h4 class="text font-weight-bold text-primary text-uppercase mb-1" data-toggle="modal" data-target="#exampleModal" style="cursor:pointer" v-on:click="pos = index">
+                                                    {{ races[pos].name}}
+                                                </h4>
+                                                <div class="h4 mb-0 font-weight-bold text-gray-800">{{ races[pos].date.split('T')[0]}}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <img class="img-fluid rounded" style="width:300px" v-if="races[pos].PathImgSmall!=''" v-bind:src="races[pos].PathImgSmall">
+                                                <img class="img-fluid rounded" style="width:300px" v-else="races[pos].PathImgSmall==''" src="https://www.shareicon.net/data/512x512/2016/04/10/747353_people_512x512.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item text-gray-800">Circuit: {{ races[pos].circuitName}}</li>
+                                        <li class="list-group-item text-gray-800">Date: {{ races[pos].date.split('T')[0]}}</li>
+                                        <li class="list-group-item text-gray-800">Time: {{ races[pos].time}}</li>
+                                        <li class="list-group-item text-gray-800">Round: {{ races[pos].round}}</li>
+                                    </ul>
+                                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Name</th>
+                                                <th>Number</th>
+                                                <th>Laps</th>
+                                                <th>Grid</th>
+                                                <th>Fastest lap time</th>
+                                                <th>Fastest lap speed</th>
+                                                <th>Points</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(item,index) in results">
+                                                <td> {{ item.positionText }}</td>
+                                                <td>{{ item.forename }} {{ item.surname }}</td>
+                                                <td> {{ item.number }}</td>
+                                                <td> {{ item.laps }}</td>
+                                                <td> {{ item.grid }}</td>
+                                                <td> {{ item.fastestLapTime }}</td>
+                                                <td> {{ item.fastestLapSpeed }}</td>
+                                                <td> {{ item.points}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="card-body">
+                                        <a :href="'https://' + races[pos].url" target="_blank" role="button" class="card-link">Wikipedia</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,26 +254,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
