@@ -16,7 +16,7 @@ namespace FormulaOneDLL
         // ------------------------------------------------------------------
         public void ExecuteSqlScript(string sqlScriptName)
         {
-            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            string WORKINGPATH = $@"D:\Dati";
 
             var fileContent = File.ReadAllText(WORKINGPATH + sqlScriptName);
             fileContent = fileContent.Replace("\r\n", "");
@@ -49,7 +49,7 @@ namespace FormulaOneDLL
         // ------------------------------------------------------------------
         public List<Driver> loadDrivers()
         {
-            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            string WORKINGPATH = $@"D:\Dati";
             List<Driver> retVal = new List<Driver>();
             var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             using (con)
@@ -76,7 +76,7 @@ namespace FormulaOneDLL
 
         public SqlDataReader loadDriversData()
         {
-            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            string WORKINGPATH = $@"D:\Dati";
             List<Driver> retVal = new List<Driver>();
             var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             using (con)
@@ -107,7 +107,7 @@ namespace FormulaOneDLL
         // ------------------------------------------------------------------
         public DataTable LoadTableDrivers()
         {
-            string WORKINGPATH = $@"C:\Users\{Environment.UserName}\Documents\MSSQLDatabase\FormulaOne\";
+            string WORKINGPATH = $@"D:\Dati";
             DataTable dt = new DataTable();
             var con = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={WORKINGPATH}FormulaOneStudioDB.mdf;Integrated Security=True");
             using (con)

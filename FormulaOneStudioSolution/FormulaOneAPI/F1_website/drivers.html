@@ -213,7 +213,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <a class="text font-weight-bold text-primary text-uppercase mb-1" data-toggle="modal" data-target="#exampleModal" style="cursor:pointer" v-on:click="pos = index">
+                                            <a class="text font-weight-bold text-primary text-uppercase mb-1" 
+                                               data-toggle="modal" 
+                                               data-target="#exampleModal" 
+                                               style="cursor:pointer" 
+                                               v-on:click="pos = index; ShowDriverScore(item.driverId); ShowDriverGrandPrix(item.driverId);">
                                                 {{ item.forename }} {{ item.surname }}
                                             </a>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{item.constructor}} {{ item.number }}</div>
@@ -249,6 +253,8 @@
                                         </div>
                                     </div>
                                     <ul class="list-group list-group-flush">
+                                        <li class="list-group-item text-gray-800">Points: {{ totalScore }}</li>
+                                        <li class="list-group-item text-gray-800">Grands Prix entered: {{ grandPrix }}</li>
                                         <li class="list-group-item text-gray-800">Date of birth: {{ drivers[pos].dob.split('T')[0]}}</li>
                                         <li class="list-group-item text-gray-800">Number: {{ drivers[pos].number}}</li>
                                         <li class="list-group-item text-gray-800">Nationality: {{ drivers[pos].nationality}}</li>

@@ -20,7 +20,7 @@ $(document).ready(function () {
                 $.getJSON(uri)
                     .done((data) => {
                         this.races = data;
-                        console.log(data)
+                        //console.log(data)
                     });
             },
             ShowRacesResults: function (year,round){
@@ -29,7 +29,7 @@ $(document).ready(function () {
                 $.getJSON(uri)
                     .done((data) => {
                         this.results = data;
-                        console.log(this.results)
+                        //console.log(this.results)
                     });
             }
         },

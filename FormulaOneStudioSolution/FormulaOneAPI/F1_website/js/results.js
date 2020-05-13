@@ -17,7 +17,7 @@ $(document).ready(function () {
                 $.getJSON(uri)
                     .done((data) => {
                         this.results = data;
-                        console.log(this.results)
+                        //console.log(this.results)
                     });
             }
         },

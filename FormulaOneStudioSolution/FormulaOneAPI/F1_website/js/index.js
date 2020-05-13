@@ -11,7 +11,9 @@ $(document).ready(function () {
                 drivers: [],
                 driversTable: [],
                 driverDetail: [],
-                pos : 0,
+                pos: 0,
+                totalScore: 0,
+                grandPrix: 0,
             }
         },
         methods: {
@@ -27,8 +29,19 @@ $(document).ready(function () {
                         //console.log(this.drivers)
                     });
             },
-            ShowDriverDetail: function () {
-                
+            ShowDriverScore: function (driverId) {
+                var uri = `../api/drivers/${driverId}/score`;
+                $.getJSON(uri)
+                    .done((data) => {
+                        this.totalScore = data;
+                    });
+            },
+            ShowDriverGrandPrix: function (driverId) {
+                var uri = `../api/drivers/${driverId}/grandprix`;
+                $.getJSON(uri)
+                    .done((data) => {
+                        this.grandPrix = data;
+                    });
             }
         },
     });

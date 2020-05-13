@@ -10,6 +10,13 @@ The Software is written mainly in **C# WPF Project**, with the addition of some 
 ### Documentation
 - [Web API routes](./Assets/doc/WebApi.md)
 
+### Database
+- [Create](./Assets/doc/sql/FormulaOneCreate.sql)
+- [Drivers](./Assets/doc/sql/drivers.sql)
+- [Constructors](./Assets/doc/sql/constructors.sql)
+- [Races](./Assets/doc/sql/races.sql)
+- [circuits](./Assets/doc/sql/circuits.sql)
+
 ### FormulaOne DB diagram
 ![DB diagram](https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/diagrams.png)
 
