@@ -5,6 +5,8 @@
 ### About
 This is FormulaOneStudio, an Open Source Software that allows you to watch & manage a **[Formula 1](https://www.formula1.com/)** championship.
 The Software is written mainly in **C# WPF Project**, with the addition of some tools written in **Python**.
+
+![Drivers](https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/drivers.gif)
 > You can find some additional photos in the [gallery folder](./Assets/doc/Gallery.md).
 
 ### Documentation
@@ -15,7 +17,8 @@ The Software is written mainly in **C# WPF Project**, with the addition of some 
 - [Drivers](./Assets/doc/sql/drivers.sql)
 - [Constructors](./Assets/doc/sql/constructors.sql)
 - [Races](./Assets/doc/sql/races.sql)
-- [circuits](./Assets/doc/sql/circuits.sql)
+- [Results](./Assets/doc/sql/circuits.sql)
+- [Results (2019)](./Assets/doc/sql/results.sql)
 
 ### FormulaOne DB diagram
 ![DB diagram](https://github.com/vallauri-ict/formula-1-Mihai-Canea/blob/master/Assets/image/diagrams.png)

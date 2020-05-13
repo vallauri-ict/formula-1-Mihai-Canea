@@ -41,5 +41,5 @@ $(document).ready(function () {
     });
 
     app.ShowRaces();
-    app.ShowRacesResults(2019, 1);
+    //app.ShowRacesResults(2019, 1);
 });
