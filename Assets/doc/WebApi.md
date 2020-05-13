@@ -58,14 +58,14 @@
 		"PathImgSmall": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Albert_Lake_Park_Street_Circuit_in_Melbourne%2C_Australia.svg/800px-Albert_Lake_Park_Street_Circuit_in_Melbourne%2C_Australia.svg.png"
 	},
 	{
-			"year": 2019,
-			"round": 2,
-			"name": "Bahrain Grand Prix",
-			"date": "2019-03-31T00:00:00",
-			"time": "15:10:00",
-			"circuitName": "Bahrain International Circuit",
-			"url": "en.wikipedia.org/wiki/2019_Bahrain_Grand_Prix",
-			"PathImgSmall": "https://upload.wikimedia.org/wikipedia/commons/2/29/Bahrain_International_Circuit--Grand_Prix_Layout.svg"
+		"year": 2019,
+		"round": 2,
+		"name": "Bahrain Grand Prix",
+		"date": "2019-03-31T00:00:00",
+		"time": "15:10:00",
+		"circuitName": "Bahrain International Circuit",
+		"url": "en.wikipedia.org/wiki/2019_Bahrain_Grand_Prix",
+		"PathImgSmall": "https://upload.wikimedia.org/wikipedia/commons/2/29/Bahrain_International_Circuit--Grand_Prix_Layout.svg"
 	},
 	...
 ]
